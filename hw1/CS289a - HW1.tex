@@ -1,0 +1,958 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{CS289a - HW1}
+    
+    \author{John Semerdjian}
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+\setcounter{secnumdepth}{0} % Turns off numbering for sections
+
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection{Problem 1 - Support Vector
+Machine}\label{problem-1---support-vector-machine}
+
+Train a linear SVM using raw pixels as features. Plot the error rate on
+a validation set versus the number of training examples that you used to
+train your classifier. The choices of the number of training examples
+should be 100, 200, 500, 1,000, 2,000, 5,000 and 10,000. Make sure you
+set aside 10,000 other training points as a validation set. You should
+expect accuracies between 70\% and 90\% at this stage.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{from} \PY{n+nn}{IPython.display} \PY{k+kn}{import} \PY{n}{Image}
+        \PY{n}{Image}\PY{p}{(}\PY{n}{filename}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{./images/1\PYZus{}svm\PYZus{}error\PYZus{}rate.png}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}1}]:}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{CS289a - HW1_files/CS289a - HW1_1_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    \subsection{Problem 2 - Confusion
+Matrix}\label{problem-2---confusion-matrix}
+
+Create confusion matrices for your experiments in Problem 1. Color code
+your results and report them. You can use built-in implementations to
+generate confusion matrices. What insights can you get about the
+performance of your algorithm from looking at the confusion matrix?
+
+\begin{quote}
+The confusion matrices tell us the types of mistakes that are being
+committed in our multi-class classification problem. The correct values
+are highlighted diagonally, while the adjacent blue values mark the
+errors. For example, in training set size 100, several predicted 9
+values were actually 4s. This type of information can help us develop
+new features that will do a better job distinguishing similar classes.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{Image}\PY{p}{(}\PY{n}{filename}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{./images/2\PYZus{}confusion\PYZus{}matrix.png}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}2}]:}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{CS289a - HW1_files/CS289a - HW1_3_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    \subsection{Problem 3 - Digit - Cross
+Validation}\label{problem-3---digit---cross-validation}
+
+Explain why cross-validation helps:
+
+\begin{quote}
+Cross-validation helps by training multiple models on different subsets
+of data in order to help us pick models that will best generalize to new
+data. It prevents over-fitting and helps us find the best features and
+hyperparameters. Once we have selected the best features and
+hyperparameters from the cross validation process, we are able to then
+train a new model using all the training data without having to set
+aside a hold-out test set.
+\end{quote}
+
+Find the optimal value of the parameter `C' using 10-fold
+cross-validation on the training set with 10,000 examples. Train an SVM
+with this value of `C' and report the validation error rate.
+
+\begin{quote}
+A \textbf{`C'} value of 0.01 achieved a mean validation error rate of
+15.6\% with 10-fold cross-validation using LinearSVC. My Kaggle
+submission used a 3rd degree polynomial kernel SVC achieved a validation
+error rate of 2.64\% with C=1000. The cross-validation process took a
+long time so the output has been omitted below. See appendix for full
+cross-validation results.
+\end{quote}
+
+\subsection{Problem 4 - Spam - Cross
+Validation}\label{problem-4---spam---cross-validation}
+
+Train a linear SVM for your spam dataset. Please state your `C' value,
+your accuracy using cross validation, and (briefly) what features you
+added, removed, or modified, if any. Adding features is optional.
+
+\begin{quote}
+My best performing \textbf{`C'} value was 100 using LinearSVC on 10-fold
+cross validation, which got an error rate of 19.06\%. This same model
+achieved 23.6\% error rate on Kaggle. I added features to count the
+number of \texttt{@}, \texttt{unsubscribe}, \texttt{sex},
+\texttt{penis}, \texttt{pics}, \texttt{drugs}, \texttt{money},
+\texttt{click}, \texttt{online}, \texttt{pills}, and \texttt{viagra}.
+These features are targeted more towards identifying spam. See appendix
+for full cross-validation results.
+\end{quote}
+
+    \section{Appendix - Code}\label{appendix---code}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{random}
+        \PY{k+kn}{import} \PY{n+nn}{time}
+        \PY{k+kn}{import} \PY{n+nn}{collections}
+        \PY{k+kn}{import} \PY{n+nn}{glob}
+        \PY{k+kn}{import} \PY{n+nn}{re}
+        \PY{k+kn}{import} \PY{n+nn}{scipy.io}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn.svm} \PY{k+kn}{import} \PY{n}{LinearSVC}\PY{p}{,} \PY{n}{SVC}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k+kn}{import} \PY{n}{preprocessing}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn.metrics} \PY{k+kn}{import} \PY{n}{accuracy\PYZus{}score}\PY{p}{,} \PY{n}{confusion\PYZus{}matrix}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} \PY{n}{inline}
+        
+        \PY{k+kn}{import} \PY{n+nn}{sys}
+        \PY{k}{print} \PY{n}{sys}\PY{o}{.}\PY{n}{version}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2.7.9 (default, Jan  7 2015, 11:49:12) 
+[GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.56)]
+    \end{Verbatim}
+
+    \subsection{Data Partitioning}\label{data-partitioning}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c}{\PYZsh{} Set seed}
+        \PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{289}\PY{p}{)}
+        
+        \PY{c}{\PYZsh{} Load data}
+        \PY{n}{digit\PYZus{}test} \PY{o}{=} \PY{n}{scipy}\PY{o}{.}\PY{n}{io}\PY{o}{.}\PY{n}{loadmat}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{./data/digit\PYZhy{}dataset/test.mat}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{digit\PYZus{}train} \PY{o}{=} \PY{n}{scipy}\PY{o}{.}\PY{n}{io}\PY{o}{.}\PY{n}{loadmat}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{./data/digit\PYZhy{}dataset/train.mat}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{digit\PYZus{}n} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{digit\PYZus{}train}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{train\PYZus{}labels}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        \PY{n}{digit\PYZus{}y} \PY{o}{=} \PY{n}{digit\PYZus{}train}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{train\PYZus{}labels}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{digit\PYZus{}X} \PY{o}{=} \PY{n}{digit\PYZus{}train}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{train\PYZus{}images}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{digit\PYZus{}n}\PY{p}{,} \PY{l+m+mi}{28} \PY{o}{*} \PY{l+m+mi}{28}\PY{p}{)}
+        \PY{n}{digit\PYZus{}test\PYZus{}X} \PY{o}{=} \PY{n}{digit\PYZus{}test}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{test\PYZus{}images}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{digit\PYZus{}test}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{test\PYZus{}images}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{T}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{28} \PY{o}{*} \PY{l+m+mi}{28}\PY{p}{)}
+        
+        \PY{c}{\PYZsh{} Associate first element in each pixel array with its label}
+        \PY{n}{digit\PYZus{}data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{digit\PYZus{}y}\PY{p}{,} \PY{n}{digit\PYZus{}X}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c}{\PYZsh{} Plot some digits}
+        \PY{k}{def} \PY{n+nf}{plot\PYZus{}digits}\PY{p}{(}\PY{n}{pixels}\PY{p}{,} \PY{n}{n}\PY{p}{,} \PY{n}{plot\PYZus{}n}\PY{p}{)}\PY{p}{:}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{plot\PYZus{}n}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+            \PY{k}{for} \PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{random}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n+nb}{xrange}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{,} \PY{n}{plot\PYZus{}n}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{plot\PYZus{}n}\PY{p}{,} \PY{n}{x}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{off}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{pixels}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{n}{y}\PY{p}{]}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{Greys}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n}{plot\PYZus{}digits}\PY{p}{(}\PY{n}{digit\PYZus{}train}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{train\PYZus{}images}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{n}\PY{o}{=}\PY{n}{digit\PYZus{}n}\PY{p}{,} \PY{n}{plot\PYZus{}n}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{CS289a - HW1_files/CS289a - HW1_9_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Problem 1 - Support Vector
+Machine}\label{problem-1---support-vector-machine}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{def} \PY{n+nf}{SVM\PYZus{}predict}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{x}\PY{p}{)}\PY{p}{:}
+            \PY{c}{\PYZsh{} randomize and partition data}
+            \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{shuffle}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+            \PY{n}{train\PYZus{}X} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{n}{x}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}
+            \PY{n}{train\PYZus{}y} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{n}{x}\PY{p}{,} \PY{l+m+mi}{0} \PY{p}{]}
+            \PY{n}{test\PYZus{}X}  \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{x}\PY{p}{:}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{10000}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}
+            \PY{n}{test\PYZus{}y}  \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{x}\PY{p}{:}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{10000}\PY{p}{,} \PY{l+m+mi}{0} \PY{p}{]}
+            \PY{c}{\PYZsh{} fit SVM}
+            \PY{n}{clf} \PY{o}{=} \PY{n}{LinearSVC}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}X}\PY{p}{,} \PY{n}{train\PYZus{}y}\PY{p}{)}
+            \PY{n}{predicted} \PY{o}{=} \PY{n}{clf}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}X}\PY{p}{)}
+            \PY{k}{return} \PY{n}{predicted}\PY{p}{,} \PY{n}{test\PYZus{}y}
+        
+        \PY{k}{def} \PY{n+nf}{problem\PYZus{}1}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{:}
+            \PY{n}{train\PYZus{}size} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{2000}\PY{p}{,} \PY{l+m+mi}{5000}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{]}
+            \PY{n}{scores} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{train\PYZus{}size}\PY{p}{:}
+                \PY{n}{predicted}\PY{p}{,} \PY{n}{test\PYZus{}y} \PY{o}{=} \PY{n}{SVM\PYZus{}predict}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+                \PY{n}{scores}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{accuracy\PYZus{}score}\PY{p}{(}\PY{n}{test\PYZus{}y}\PY{p}{,} \PY{n}{predicted}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            \PY{k}{return} \PY{n}{scores}
+        
+        \PY{k}{def} \PY{n+nf}{problem\PYZus{}1\PYZus{}plot}\PY{p}{(}\PY{n}{scores}\PY{p}{)}\PY{p}{:}
+            \PY{n}{key} \PY{o}{=} \PY{p}{[}\PY{n}{x} \PY{k}{for} \PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o+ow}{in} \PY{n}{scores}\PY{p}{]}
+            \PY{n}{value} \PY{o}{=} \PY{p}{[}\PY{n}{y} \PY{k}{for} \PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o+ow}{in} \PY{n}{scores}\PY{p}{]}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{scores}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{value}\PY{p}{,} \PY{n}{align}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{scores}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{key}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{SVM Error Rate}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n}{scores\PYZus{}1} \PY{o}{=} \PY{n}{problem\PYZus{}1}\PY{p}{(}\PY{n}{digit\PYZus{}data}\PY{p}{)}
+        \PY{n}{problem\PYZus{}1\PYZus{}plot}\PY{p}{(}\PY{n}{scores\PYZus{}1}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{CS289a - HW1_files/CS289a - HW1_11_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Problem 2 - Confusion
+Matrix}\label{problem-2---confusion-matrix}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k}{def} \PY{n+nf}{problem\PYZus{}2}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{:}
+            \PY{n}{train\PYZus{}size} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{2000}\PY{p}{,} \PY{l+m+mi}{5000}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{]}
+            \PY{n}{matrix\PYZus{}scores} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        
+            \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{train\PYZus{}size}\PY{p}{:}
+                \PY{n}{predicted}\PY{p}{,} \PY{n}{test\PYZus{}y} \PY{o}{=} \PY{n}{SVM\PYZus{}predict}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+                \PY{n}{cm} \PY{o}{=} \PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{test\PYZus{}y}\PY{p}{,} \PY{n}{predicted}\PY{p}{)}
+                \PY{n}{matrix\PYZus{}scores}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{cm}\PY{p}{)}\PY{p}{)}
+        
+            \PY{k}{return} \PY{n}{matrix\PYZus{}scores}
+        
+        \PY{k}{def} \PY{n+nf}{problem\PYZus{}2\PYZus{}plot}\PY{p}{(}\PY{n}{matrix\PYZus{}scores}\PY{p}{)}\PY{p}{:}
+            \PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{nrows}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{ncols}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{14}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+            \PY{n}{axes}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{off}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{fig}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{n}{wspace}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{3}\PY{p}{)}
+        
+            \PY{k}{for} \PY{n}{data}\PY{p}{,} \PY{n}{ax} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{matrix\PYZus{}scores}\PY{p}{,} \PY{n}{axes}\PY{o}{.}\PY{n}{flat}\PY{p}{)}\PY{p}{:}
+                \PY{n}{im} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{interpolation}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{none}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Training Size: \PYZob{}\PYZcb{}}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Predicted label}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{True label}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+            \PY{c}{\PYZsh{} Make an axis for the colorbar on the right side}
+            \PY{n}{cax} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}axes}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.9}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mf}{0.03}\PY{p}{,} \PY{l+m+mf}{0.8}\PY{p}{]}\PY{p}{)}
+            \PY{n}{fig}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{right}\PY{o}{=}\PY{l+m+mf}{0.87}\PY{p}{)}
+            \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{im}\PY{p}{,} \PY{n}{cax}\PY{o}{=}\PY{n}{cax}\PY{p}{)}
+            \PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Confusion Matrices}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n}{problem\PYZus{}2\PYZus{}plot}\PY{p}{(}\PY{n}{problem\PYZus{}2}\PY{p}{(}\PY{n}{digit\PYZus{}data}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{CS289a - HW1_files/CS289a - HW1_13_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Problem 3 - Digit - Cross
+Validation}\label{problem-3---digit---cross-validation}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{def} \PY{n+nf}{problem\PYZus{}3}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{n\PYZus{}samples}\PY{p}{,} \PY{n}{folds}\PY{p}{,} \PY{n}{C\PYZus{}hyperparam}\PY{p}{)}\PY{p}{:}
+            \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{Problem 3: Digit Classification Cross Validation}\PY{l+s}{\PYZdq{}}
+            \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{shuffle}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+            \PY{n}{scaler} \PY{o}{=} \PY{n}{preprocessing}\PY{o}{.}\PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}
+            \PY{n}{X} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{n}{n\PYZus{}samples}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}
+            \PY{n}{X} \PY{o}{=} \PY{n}{scaler}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{X}\PY{p}{)}
+            \PY{n}{y} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{n}{n\PYZus{}samples}\PY{p}{,} \PY{l+m+mi}{0} \PY{p}{]}
+            \PY{n}{fold\PYZus{}size} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{o}{/}\PY{n}{folds}
+        
+            \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n}{C\PYZus{}hyperparam}\PY{p}{:}
+                \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZob{}:\PYZlt{}7\PYZcb{}\PYZob{}:\PYZlt{}6\PYZcb{}\PYZob{}:\PYZlt{}8\PYZcb{}\PYZob{}:\PYZlt{}6\PYZcb{}}\PY{l+s}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{C}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Fold}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Error}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Time}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{kfold\PYZus{}errors} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{x} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{n\PYZus{}samples}\PY{p}{,} \PY{n}{fold\PYZus{}size}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+                    \PY{n}{all\PYZus{}idx}  \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{n\PYZus{}samples}\PY{p}{)}\PY{p}{)}
+                    \PY{n}{test\PYZus{}idx} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{x} \PY{o}{+} \PY{n}{fold\PYZus{}size}\PY{p}{)}\PY{p}{)}
+                    \PY{n}{train\PYZus{}idx} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{all\PYZus{}idx} \PY{o}{\PYZhy{}} \PY{n}{test\PYZus{}idx}\PY{p}{)}\PY{p}{)}
+                    \PY{n}{test\PYZus{}idx}  \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{test\PYZus{}idx}\PY{p}{)}\PY{p}{)}            
+        
+                    \PY{n}{train\PYZus{}fold\PYZus{}X}\PY{p}{,} \PY{n}{train\PYZus{}fold\PYZus{}y} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{n}{train\PYZus{}idx}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{p}{[}\PY{n}{train\PYZus{}idx}\PY{p}{]}
+                    \PY{n}{test\PYZus{}fold\PYZus{}X}\PY{p}{,}  \PY{n}{test\PYZus{}fold\PYZus{}y}  \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{n}{test\PYZus{}idx}\PY{p}{]}\PY{p}{,}  \PY{n}{y}\PY{p}{[}\PY{n}{test\PYZus{}idx}\PY{p}{]}
+        
+                    \PY{n}{clf} \PY{o}{=} \PY{n}{LinearSVC}\PY{p}{(}\PY{n}{C}\PY{o}{=}\PY{n}{c}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}fold\PYZus{}X}\PY{p}{,} \PY{n}{train\PYZus{}fold\PYZus{}y}\PY{p}{)}
+                    \PY{n}{predicted} \PY{o}{=} \PY{n}{clf}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}fold\PYZus{}X}\PY{p}{)}
+                    \PY{n}{error} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{accuracy\PYZus{}score}\PY{p}{(}\PY{n}{test\PYZus{}fold\PYZus{}y}\PY{p}{,} \PY{n}{predicted}\PY{p}{)}
+                    \PY{n}{kfold\PYZus{}errors}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{error}\PY{p}{)}
+                    \PY{n}{end\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+                    \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZob{}:\PYZlt{}7\PYZcb{}\PYZob{}:\PYZlt{}6\PYZcb{}\PYZob{}:\PYZlt{}8\PYZcb{}\PYZob{}:\PYZlt{}6\PYZcb{}}\PY{l+s}{\PYZdq{}}\PY{o}{.}\PYZbs{}
+                        \PY{n}{format}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{i}\PY{p}{,} \PY{n}{error}\PY{p}{,} \PY{n+nb}{round}\PY{p}{(}\PY{n}{end\PYZus{}time} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+        
+                \PY{n}{mean\PYZus{}error} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{kfold\PYZus{}errors}\PY{p}{)}
+                \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{Mean error:  \PYZob{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{mean\PYZus{}error}\PY{p}{)}
+        
+        
+        \PY{n}{problem\PYZus{}3}\PY{p}{(}\PY{n}{digit\PYZus{}data}\PY{p}{,} \PY{n}{n\PYZus{}samples}\PY{o}{=}\PY{l+m+mi}{10000}\PY{p}{,} \PY{n}{folds}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{C\PYZus{}hyperparam}\PY{o}{=}\PY{p}{[}\PY{o}{.}\PY{l+m+mo}{001}\PY{p}{,} \PY{o}{.}\PY{l+m+mo}{01}\PY{p}{,} \PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Problem 3: Digit Classification Cross Validation
+C      Fold  Error   Time  
+0.001  0     0.161   12.32 
+0.001  1     0.157   11.15 
+0.001  2     0.16    14.9  
+0.001  3     0.186   14.12 
+0.001  4     0.161   16.71 
+0.001  5     0.15    11.79 
+0.001  6     0.173   13.99 
+0.001  7     0.166   15.41 
+0.001  8     0.172   16.73 
+0.001  9     0.162   13.6  
+Mean error:  0.1648
+
+C      Fold  Error   Time  
+0.01   0     0.15    33.32 
+0.01   1     0.156   32.92 
+0.01   2     0.148   37.28 
+0.01   3     0.175   34.18 
+0.01   4     0.148   37.93 
+0.01   5     0.148   29.31 
+0.01   6     0.161   32.5  
+0.01   7     0.167   34.18 
+0.01   8     0.152   31.99 
+0.01   9     0.154   32.83 
+Mean error:  0.1559
+
+C      Fold  Error   Time  
+0.1    0     0.166   37.75 
+0.1    1     0.167   37.96 
+0.1    2     0.169   38.97 
+0.1    3     0.196   38.38 
+0.1    4     0.175   39.72 
+0.1    5     0.164   39.1  
+0.1    6     0.185   39.39 
+0.1    7     0.19    38.59 
+0.1    8     0.174   39.43 
+0.1    9     0.167   39.31 
+Mean error:  0.1753
+
+C      Fold  Error   Time  
+1      0     0.192   48.21 
+1      1     0.198   46.22 
+1      2     0.193   47.45 
+1      3     0.23    45.73 
+1      4     0.19    43.34 
+1      5     0.188   45.88 
+1      6     0.219   46.05 
+1      7     0.209   44.59 
+1      8     0.221   43.85 
+1      9     0.207   44.61 
+Mean error:  0.2047
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/Users/jsemer/.virtualenvs/cs289/lib/python2.7/site-packages/sklearn/utils/validation.py:332: UserWarning: StandardScaler assumes floating point values as input, got uint8
+  "got \%s" \% (estimator, X.dtype))
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{k}{def} \PY{n+nf}{digit\PYZus{}kaggle\PYZus{}submisison}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{test\PYZus{}X}\PY{p}{,} \PY{n}{n\PYZus{}samples}\PY{p}{,} \PY{n}{c}\PY{p}{)}\PY{p}{:}
+            \PY{c}{\PYZsh{} combine test and training data for scaling}
+            \PY{n}{scaler} \PY{o}{=} \PY{n}{preprocessing}\PY{o}{.}\PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}
+            \PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{test\PYZus{}X}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+            \PY{n}{X} \PY{o}{=} \PY{n}{scaler}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+            
+            \PY{c}{\PYZsh{} re\PYZhy{}partition scaled training and test data}
+            \PY{n}{train\PYZus{}X} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{n+nb}{len}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+            \PY{n}{test\PYZus{}X}  \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{n+nb}{len}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{)}\PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+            \PY{n}{train\PYZus{}y} \PY{o}{=} \PY{n}{train\PYZus{}data}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+            
+            \PY{n}{clf} \PY{o}{=} \PY{n}{SVC}\PY{p}{(}\PY{n}{C}\PY{o}{=}\PY{n}{c}\PY{p}{,} \PY{n}{kernel}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{poly}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{degree}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}X}\PY{p}{,} \PY{n}{train\PYZus{}y}\PY{p}{)}
+            \PY{n}{predicted} \PY{o}{=} \PY{n}{clf}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}X}\PY{p}{)}
+            \PY{k}{return} \PY{n}{predicted}
+        
+        \PY{c}{\PYZsh{} digit\PYZus{}kaggle\PYZus{}pred = digit\PYZus{}kaggle\PYZus{}submisison(train\PYZus{}data=digit\PYZus{}data, test\PYZus{}X=digit\PYZus{}test\PYZus{}X, n\PYZus{}samples=60000, c=1000)}
+        \PY{c}{\PYZsh{} digit\PYZus{}save\PYZus{}data = zip(range(1, len(digit\PYZus{}test\PYZus{}X) + 1), digit\PYZus{}kaggle\PYZus{}pred)}
+        \PY{c}{\PYZsh{} np.savetxt(\PYZdq{}./predictions/digit\PYZus{}predictions\PYZus{}scaled\PYZus{}SVC\PYZus{}poly3.csv\PYZdq{}, }
+        \PY{c}{\PYZsh{}            digit\PYZus{}save\PYZus{}data, fmt=\PYZdq{}\PYZpc{}i\PYZdq{}, delimiter=\PYZdq{},\PYZdq{}, header=\PYZdq{}Id,Category\PYZdq{}, comments=\PYZdq{}\PYZdq{})}
+\end{Verbatim}
+
+    \subsection{Problem 4 - Spam - Cross
+Validation}\label{problem-4---spam---cross-validation}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{NUM\PYZus{}TRAINING\PYZus{}EXAMPLES} \PY{o}{=} \PY{l+m+mi}{5172}
+        \PY{n}{NUM\PYZus{}TEST\PYZus{}EXAMPLES} \PY{o}{=} \PY{l+m+mi}{5857}
+        
+        \PY{n}{BASE\PYZus{}DIR} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{./data/spam\PYZhy{}dataset/}\PY{l+s}{\PYZsq{}}
+        \PY{n}{SPAM\PYZus{}DIR} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{spam/}\PY{l+s}{\PYZsq{}}
+        \PY{n}{HAM\PYZus{}DIR} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{ham/}\PY{l+s}{\PYZsq{}}
+        \PY{n}{TEST\PYZus{}DIR} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{test/}\PY{l+s}{\PYZsq{}}
+        
+        \PY{c}{\PYZsh{} ************* Features *************}
+        
+        \PY{c}{\PYZsh{} Features that look for certain words}
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}pain\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{pain}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}private\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{private}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}bank\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{bank}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}money\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{money}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}drug\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{drug}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}spam\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{spam}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}prescription\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{prescription}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}creative\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{creative}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}height\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{height}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}featured\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{featured}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}differ\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{differ}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}width\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{width}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}other\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{other}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}energy\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{energy}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}business\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{business}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}message\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{message}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}volumes\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{volumes}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}revision\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{revision}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}path\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{path}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}meter\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{meter}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}memo\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{memo}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}planning\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{planning}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}pleased\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{pleased}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}record\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{record}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}out\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{freq}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{out}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{c}{\PYZsh{} Features that look for certain characters}
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}semicolon\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{;}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}dollar\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZdl{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}sharp\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}exclamation\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{!}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}para\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{(}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}bracket\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{[}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}and\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZam{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c}{\PYZsh{}\PYZsh{} my added features}
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}and\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{@}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}and\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{unsubscribe}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}and\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{sex}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}and\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{penis}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}and\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{pics}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}and\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{drugs}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}and\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{money}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}and\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{click}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}and\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{online}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}and\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{pills}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{freq\PYZus{}and\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{text}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{viagra}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{} Add your own feature methods \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{def} \PY{n+nf}{example\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{int}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{example}\PY{l+s}{\PYZsq{}} \PY{o+ow}{in} \PY{n}{text}\PY{p}{)}
+        
+        \PY{c}{\PYZsh{} Generates a feature vector}
+        \PY{k}{def} \PY{n+nf}{generate\PYZus{}feature\PYZus{}vector}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{:}
+            \PY{n}{feature} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}pain\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}private\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}bank\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}money\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}drug\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}spam\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}prescription\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}creative\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}height\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}featured\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}differ\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}width\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}other\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}energy\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}business\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}message\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}volumes\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}revision\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}path\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}meter\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}memo\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}planning\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}pleased\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}record\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}out\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}semicolon\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}dollar\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}sharp\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}exclamation\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}para\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}bracket\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{n}{feature}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{freq\PYZus{}and\PYZus{}feature}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+        
+            \PY{c}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{} Add your own features here \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+            \PY{c}{\PYZsh{} Make sure type is int or float}
+        
+            \PY{k}{return} \PY{n}{feature}
+        
+        \PY{c}{\PYZsh{} This method generates a design matrix with a list of filenames}
+        \PY{c}{\PYZsh{} Each file is a single training example}
+        \PY{k}{def} \PY{n+nf}{generate\PYZus{}design\PYZus{}matrix}\PY{p}{(}\PY{n}{filenames}\PY{p}{)}\PY{p}{:}
+            \PY{n}{design\PYZus{}matrix} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{k}{for} \PY{n}{filename} \PY{o+ow}{in} \PY{n}{filenames}\PY{p}{:}
+                \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{filename}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+                    \PY{n}{text} \PY{o}{=} \PY{n}{f}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)} \PY{c}{\PYZsh{} Read in text from file}
+                    \PY{n}{text} \PY{o}{=} \PY{n}{text}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}r}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{ }\PY{l+s}{\PYZsq{}}\PY{p}{)} \PY{c}{\PYZsh{} Remove newline character}
+                    \PY{n}{words} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s}{r\PYZsq{}}\PY{l+s}{\PYZbs{}}\PY{l+s}{w+}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{text}\PY{p}{)}
+                    \PY{n}{word\PYZus{}freq} \PY{o}{=} \PY{n}{collections}\PY{o}{.}\PY{n}{defaultdict}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)} \PY{c}{\PYZsh{} Frequency of all words}
+                    \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{words}\PY{p}{:}
+                        \PY{n}{word\PYZus{}freq}\PY{p}{[}\PY{n}{word}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+        
+                    \PY{c}{\PYZsh{} Create a feature vector}
+                    \PY{n}{feature\PYZus{}vector} \PY{o}{=} \PY{n}{generate\PYZus{}feature\PYZus{}vector}\PY{p}{(}\PY{n}{text}\PY{p}{,} \PY{n}{word\PYZus{}freq}\PY{p}{)}
+                    \PY{n}{design\PYZus{}matrix}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{feature\PYZus{}vector}\PY{p}{)}
+            \PY{k}{return} \PY{n}{design\PYZus{}matrix}
+        
+        \PY{c}{\PYZsh{} ************** Script starts here **************}
+        \PY{c}{\PYZsh{} DO NOT MODIFY ANYTHING BELOW}
+        
+        \PY{n}{spam\PYZus{}filenames} \PY{o}{=} \PY{n}{glob}\PY{o}{.}\PY{n}{glob}\PY{p}{(}\PY{n}{BASE\PYZus{}DIR} \PY{o}{+} \PY{n}{SPAM\PYZus{}DIR} \PY{o}{+} \PY{l+s}{\PYZsq{}}\PY{l+s}{*.txt}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{spam\PYZus{}design\PYZus{}matrix} \PY{o}{=} \PY{n}{generate\PYZus{}design\PYZus{}matrix}\PY{p}{(}\PY{n}{spam\PYZus{}filenames}\PY{p}{)}
+        \PY{n}{ham\PYZus{}filenames} \PY{o}{=} \PY{n}{glob}\PY{o}{.}\PY{n}{glob}\PY{p}{(}\PY{n}{BASE\PYZus{}DIR} \PY{o}{+} \PY{n}{HAM\PYZus{}DIR} \PY{o}{+} \PY{l+s}{\PYZsq{}}\PY{l+s}{*.txt}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ham\PYZus{}design\PYZus{}matrix} \PY{o}{=} \PY{n}{generate\PYZus{}design\PYZus{}matrix}\PY{p}{(}\PY{n}{ham\PYZus{}filenames}\PY{p}{)}
+        \PY{c}{\PYZsh{} Important: the test\PYZus{}filenames must be in numerical order as that is the}
+        \PY{c}{\PYZsh{} order we will be evaluating your classifier}
+        \PY{n}{test\PYZus{}filenames} \PY{o}{=} \PY{p}{[}\PY{n}{BASE\PYZus{}DIR} \PY{o}{+} \PY{n}{TEST\PYZus{}DIR} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{+} \PY{l+s}{\PYZsq{}}\PY{l+s}{.txt}\PY{l+s}{\PYZsq{}} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{NUM\PYZus{}TEST\PYZus{}EXAMPLES}\PY{p}{)}\PY{p}{]}
+        \PY{n}{test\PYZus{}design\PYZus{}matrix} \PY{o}{=} \PY{n}{generate\PYZus{}design\PYZus{}matrix}\PY{p}{(}\PY{n}{test\PYZus{}filenames}\PY{p}{)}
+        
+        \PY{n}{X} \PY{o}{=} \PY{n}{spam\PYZus{}design\PYZus{}matrix} \PY{o}{+} \PY{n}{ham\PYZus{}design\PYZus{}matrix}
+        \PY{n}{Y} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n+nb}{len}\PY{p}{(}\PY{n}{spam\PYZus{}design\PYZus{}matrix}\PY{p}{)} \PY{o}{+} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n+nb}{len}\PY{p}{(}\PY{n}{ham\PYZus{}design\PYZus{}matrix}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{k}{def} \PY{n+nf}{problem\PYZus{}4}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{n\PYZus{}samples}\PY{p}{,} \PY{n}{folds}\PY{p}{,} \PY{n}{C\PYZus{}hyperparam}\PY{p}{)}\PY{p}{:}
+            \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{Problem 4: Spam Classification Cross Validation}\PY{l+s}{\PYZdq{}}
+            \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{shuffle}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+            \PY{n}{scaler} \PY{o}{=} \PY{n}{preprocessing}\PY{o}{.}\PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}
+            \PY{n}{X} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{n}{n\PYZus{}samples}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}
+            \PY{n}{X} \PY{o}{=} \PY{n}{scaler}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{X}\PY{p}{)}
+            \PY{n}{y} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{n}{n\PYZus{}samples}\PY{p}{,} \PY{l+m+mi}{0} \PY{p}{]}
+            \PY{n}{fold\PYZus{}size} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{o}{/}\PY{n}{folds}
+            
+            \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n}{C\PYZus{}hyperparam}\PY{p}{:}
+                \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZob{}:\PYZlt{}6\PYZcb{}\PYZob{}:\PYZlt{}6\PYZcb{}\PYZob{}:\PYZlt{}8\PYZcb{}\PYZob{}:\PYZlt{}6\PYZcb{}}\PY{l+s}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{C}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Fold}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Error}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Time}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{kfold\PYZus{}scores} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{x} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{n\PYZus{}samples}\PY{p}{,} \PY{n}{fold\PYZus{}size}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+                    \PY{n}{all\PYZus{}idx}  \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{n\PYZus{}samples}\PY{p}{)}\PY{p}{)}
+                    \PY{n}{test\PYZus{}idx} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{x} \PY{o}{+} \PY{n}{fold\PYZus{}size}\PY{p}{)}\PY{p}{)}
+                    \PY{n}{train\PYZus{}idx} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{all\PYZus{}idx} \PY{o}{\PYZhy{}} \PY{n}{test\PYZus{}idx}\PY{p}{)}\PY{p}{)}
+                    \PY{n}{test\PYZus{}idx}  \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{test\PYZus{}idx}\PY{p}{)}\PY{p}{)}            
+        
+                    \PY{n}{train\PYZus{}fold\PYZus{}X}\PY{p}{,} \PY{n}{train\PYZus{}fold\PYZus{}y} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{n}{train\PYZus{}idx}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{p}{[}\PY{n}{train\PYZus{}idx}\PY{p}{]}
+                    \PY{n}{test\PYZus{}fold\PYZus{}X}\PY{p}{,}  \PY{n}{test\PYZus{}fold\PYZus{}y}  \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{n}{test\PYZus{}idx}\PY{p}{]}\PY{p}{,}  \PY{n}{y}\PY{p}{[}\PY{n}{test\PYZus{}idx}\PY{p}{]}
+                    
+                    \PY{n}{clf} \PY{o}{=} \PY{n}{LinearSVC}\PY{p}{(}\PY{n}{C}\PY{o}{=}\PY{n}{c}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}fold\PYZus{}X}\PY{p}{,} \PY{n}{train\PYZus{}fold\PYZus{}y}\PY{p}{)}
+                    \PY{n}{predicted} \PY{o}{=} \PY{n}{clf}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}fold\PYZus{}X}\PY{p}{)}
+                    \PY{n}{score} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{accuracy\PYZus{}score}\PY{p}{(}\PY{n}{test\PYZus{}fold\PYZus{}y}\PY{p}{,} \PY{n}{predicted}\PY{p}{)}
+                    \PY{n}{kfold\PYZus{}scores}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{score}\PY{p}{)}
+                    \PY{n}{end\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+                    \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZob{}:\PYZlt{}6\PYZcb{}\PYZob{}:\PYZlt{}6\PYZcb{}\PYZob{}:\PYZlt{}8\PYZcb{}\PYZob{}:\PYZlt{}6\PYZcb{}}\PY{l+s}{\PYZdq{}}\PY{o}{.}\PYZbs{}
+                        \PY{n}{format}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{i}\PY{p}{,} \PY{n+nb}{round}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{score}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{,} \PY{n+nb}{round}\PY{p}{(}\PY{n}{end\PYZus{}time} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+        
+                \PY{n}{mean\PYZus{}score} \PY{o}{=} \PY{n+nb}{round}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{kfold\PYZus{}scores}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+                \PY{n}{mean\PYZus{}error} \PY{o}{=} \PY{n+nb}{round}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{mean\PYZus{}score}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+                \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{Mean accuracy: \PYZob{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{Mean error:    \PYZob{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{mean\PYZus{}score}\PY{p}{,} \PY{n}{mean\PYZus{}error}\PY{p}{)}
+        
+        
+        \PY{n}{spam\PYZus{}data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{y}\PY{p}{]} \PY{k}{for} \PY{n}{y} \PY{o+ow}{in} \PY{n}{Y}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{problem\PYZus{}4}\PY{p}{(}\PY{n}{spam\PYZus{}data}\PY{p}{,} \PY{n}{n\PYZus{}samples}\PY{o}{=}\PY{l+m+mi}{5000}\PY{p}{,} \PY{n}{folds}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{C\PYZus{}hyperparam}\PY{o}{=}\PY{p}{[}\PY{o}{.}\PY{l+m+mo}{01}\PY{p}{,} \PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Problem 4: Spam Classification Cross Validation
+C     Fold  Error   Time  
+0.01  0     0.208   0.15  
+0.01  1     0.176   0.15  
+0.01  2     0.188   0.14  
+0.01  3     0.184   0.24  
+0.01  4     0.166   0.22  
+0.01  5     0.216   0.15  
+0.01  6     0.22    0.14  
+0.01  7     0.216   0.14  
+0.01  8     0.204   0.15  
+0.01  9     0.178   0.08  
+Mean accuracy: 0.1956
+Mean error:    0.8044
+
+C     Fold  Error   Time  
+0.1   0     0.204   0.46  
+0.1   1     0.176   0.42  
+0.1   2     0.186   0.44  
+0.1   3     0.184   0.5   
+0.1   4     0.172   0.48  
+0.1   5     0.222   0.42  
+0.1   6     0.216   0.49  
+0.1   7     0.212   0.5   
+0.1   8     0.206   0.42  
+0.1   9     0.178   0.42  
+Mean accuracy: 0.1956
+Mean error:    0.8044
+
+C     Fold  Error   Time  
+1     0     0.204   0.43  
+1     1     0.172   0.44  
+1     2     0.186   0.56  
+1     3     0.182   0.57  
+1     4     0.17    0.49  
+1     5     0.222   0.45  
+1     6     0.216   0.41  
+1     7     0.206   0.47  
+1     8     0.21    0.49  
+1     9     0.178   0.49  
+Mean accuracy: 0.1946
+Mean error:    0.8054
+
+C     Fold  Error   Time  
+10    0     0.208   0.52  
+10    1     0.17    0.42  
+10    2     0.19    0.48  
+10    3     0.186   0.46  
+10    4     0.172   0.49  
+10    5     0.22    0.46  
+10    6     0.21    0.45  
+10    7     0.202   0.46  
+10    8     0.204   0.48  
+10    9     0.172   0.45  
+Mean accuracy: 0.1934
+Mean error:    0.8066
+
+C     Fold  Error   Time  
+100   0     0.204   0.47  
+100   1     0.174   0.48  
+100   2     0.198   0.47  
+100   3     0.178   0.48  
+100   4     0.17    0.47  
+100   5     0.216   0.48  
+100   6     0.214   0.49  
+100   7     0.196   0.47  
+100   8     0.192   0.43  
+100   9     0.164   0.43  
+Mean accuracy: 0.1906
+Mean error:    0.8094
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{k}{def} \PY{n+nf}{spam\PYZus{}kaggle\PYZus{}submisison}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{test\PYZus{}X}\PY{p}{,} \PY{n}{n\PYZus{}samples}\PY{p}{,} \PY{n}{c}\PY{p}{)}\PY{p}{:}
+             \PY{c}{\PYZsh{} combine test and training data for scaling}
+             \PY{n}{scaler} \PY{o}{=} \PY{n}{preprocessing}\PY{o}{.}\PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}
+             \PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{test\PYZus{}X}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+             \PY{n}{X} \PY{o}{=} \PY{n}{scaler}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+             
+             \PY{c}{\PYZsh{} re\PYZhy{}partition scaled training and test data}
+             \PY{n}{train\PYZus{}X} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{n+nb}{len}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+             \PY{n}{test\PYZus{}X}  \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{n+nb}{len}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{)}\PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+             \PY{n}{train\PYZus{}y} \PY{o}{=} \PY{n}{train\PYZus{}data}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+             
+             \PY{n}{clf} \PY{o}{=} \PY{n}{LinearSVC}\PY{p}{(}\PY{n}{C}\PY{o}{=}\PY{n}{c}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}X}\PY{p}{,} \PY{n}{train\PYZus{}y}\PY{p}{)}
+             \PY{n}{predicted} \PY{o}{=} \PY{n}{clf}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}X}\PY{p}{)}
+             \PY{k}{return} \PY{n}{predicted}
+         
+         \PY{c}{\PYZsh{} spam\PYZus{}test\PYZus{}X = np.array(test\PYZus{}design\PYZus{}matrix)}
+         \PY{c}{\PYZsh{} spam\PYZus{}kaggle\PYZus{}pred = spam\PYZus{}kaggle\PYZus{}submisison(train\PYZus{}data=spam\PYZus{}data, test\PYZus{}X=spam\PYZus{}test\PYZus{}X, n\PYZus{}samples=5172, c=100)}
+         \PY{c}{\PYZsh{} spam\PYZus{}save\PYZus{}data = zip(range(1, len(spam\PYZus{}test\PYZus{}X) + 1), spam\PYZus{}kaggle\PYZus{}pred)}
+         \PY{c}{\PYZsh{} np.savetxt(\PYZdq{}./predictions/spam\PYZus{}predictions\PYZus{}scaled\PYZus{}linearSVC\PYZus{}c100.csv\PYZdq{}, }
+         \PY{c}{\PYZsh{}            spam\PYZus{}save\PYZus{}data, fmt=\PYZdq{}\PYZpc{}i\PYZdq{}, delimiter=\PYZdq{},\PYZdq{}, header=\PYZdq{}Id,Category\PYZdq{}, comments=\PYZdq{}\PYZdq{})}
+\end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
