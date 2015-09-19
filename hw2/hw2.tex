@@ -1,0 +1,253 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,bm,hyperref}
+\addtolength{\evensidemargin}{-.5in}
+\addtolength{\oddsidemargin}{-.5in}
+\addtolength{\textwidth}{0.8in}
+\addtolength{\textheight}{0.8in}
+\addtolength{\topmargin}{-.4in}
+\newtheoremstyle{quest}{\topsep}{\topsep}{}{}{\bfseries}{}{ }{\thmname{#1}\thmnote{ #3}.}
+\theoremstyle{quest}
+\newtheorem*{definition}{Definition}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{question}{Problem}
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{challengeproblem}{Challenge Problem}
+\newcommand{\name}{%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% put your name here, so we know who to give credit to %%
+CS189: Introduction to Machine Learning
+}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\hw}{%%%%%%%%%%%%%%%%%%%%
+%% and which homework assignment is it? %%%%%%%%%
+%% put the correct number below %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+2
+}
+\newcommand{\duedate}{Due date: }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\vspace{-50pt}
+\huge \name
+\\\vspace{10pt}
+\Large Homework \hw
+\\\vspace{10pt}
+\large Due: September 24, 2015 at 11:59pm}
+\date{}
+\author{}
+
+\markright{\name\hfill Homework \hw\hfill}
+
+%% If you want to define a new command, you can do it like this:
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
+%% If you want to use a function like ''sin'' or ''cos'', you can do it like this
+%% (we probably won't have much use for this)
+% \DeclareMathOperator{\sin}{sin}   %% just an example (it's already defined)
+
+
+\begin{document}
+\maketitle
+
+\begin{picture}(0,0)
+\put(-20,180){
+\textbf{Name:} \hspace{6cm}
+\textbf{Student ID:}  
+}
+\end{picture}
+\vspace{-0.75in}
+
+% =============================================================
+% Instructions: 
+\section*{Instructions:}
+\begin{itemize}
+\item Homework 2 is completely a written assignment, no coding involved.
+\item Please write (legibly!) or typeset your answers in the space provided. If you choose to typeset your answers, please use this template file (\href{https://bcourses.berkeley.edu/courses/1352792/announcements}{\underline{hw2.tex}}), provided on bCourses announcement page. If there is not enough space for your answer, you can continue your answer on a separate page (for example : You might want to append pages in Questions 6,7,8).
+\item Submit a pdf of your answers to \underline{\url{https://gradescope.com}} under Homework 2. A photograph or scanned copy is acceptable as long as it is clear with good contrast. You should be able to see CS 189/289 on gradescope when you login with your primary e-mail address used in bCourses. Please let us know if you have any problems accessing gradescope.
+\item While submitting to Gradescope, you will have to select the region containing your answer for each of the question. Thus, write the answer to a question (or given part of the question) at one place only. 
+\item Start early and don't wait until last minute to submit the assignment as the submission procedure might take sometime too.
+\end{itemize}
+
+\section*{About the Assignment:}
+\begin{itemize}
+\item This assignment tries to refresh the concepts of probability, linear algebra and matrix calculus. 
+\item Questions 1 to 6 are dedicated to deriving fundamental results related to these concepts. You might want to refer your math class textbooks for help.
+\item Questions 7,8 discuss few applications of these concepts in machine learning. 
+\item Hope you will enjoy doing the assignment !
+\end{itemize}
+\noindent
+\textbf{Homework Party : Sept 21, 2-4pm in the Wozniak Lounge, SODA 430}
+\newpage
+
+% =============================================================
+
+\begin{question}[1]
+A target is made of 3 concentric circles of radii $1/{\sqrt{3}}$, $1$ and $\sqrt{3}$ feet. Shots within the inner circle are given 4 points, shots within the next ring are given 3 points, and shots within the third ring are given 2 points. Shots outside the target are given 0 points.
+
+Let $X$ be the distance of the hit from the center (in feet), and let the p.d.f of $X$ be
+\[
+f(x) =
+  \begin{cases}
+   \frac{2}{\pi (1+x^2)} & x>0 \\
+   0 &  \text{otherwise}
+  \end{cases}
+\]
+What is the expected value of the score of a single shot?
+\end{question}
+\textbf{Solution:}
+%%%%%%%%%%% Write your solution to problem 1 here %%%%%%%%%%%
+\newpage
+
+% =============================================================
+
+\begin{question}[2]
+Assume that the random variable $X$ has the exponential distribution
+\[
+f(x|\theta) = \theta e^{-\theta x} \ \ \ \ \ \ \ \ x > 0, \theta > 0
+\]
+where $\theta$ is the parameter of the distribution. Use the method of maximum likelihood to estimate $\theta$ if 5 observations of $X$ are $x_1 = 0.9$, $x_2 = 1.7$, $x_3 = 0.4$, $x_4 = 0.3$, and $x_5 = 2.4$, generated i.i.d. (i.e., independent and identically distributed).
+\end{question}
+\textbf{Solution:}
+%%%%%%%%%%% Write your solution to problem 2 here %%%%%%%%%%%
+\newpage
+
+% =============================================================
+
+\begin{question}[3]
+The polynomial kernel is defined to be
+\[
+k(\bf{x},\bf{y}) = (\bf{x}^T\bf{y} + c)^d
+\]
+where $\bf{x},\bf{y} \in \mathbb{R}^n$, and $c \geq 0$. When we take $d=2$, this kernel is called the quadratic kernel.
+\begin{itemize}
+\item[(a)] Find the feature mapping $\Phi(\bf{z})$ that corresponds to the quadratic kernel.
+\item[(b)] How do we find the optimal value of $d$ for a given dataset?
+\end{itemize}
+\end{question}
+\textbf{Solution:}
+%%%%%%%%%%% Write your solution to problem 3 (a) here %%%%%%%%%%%
+%%%%%%%%%%% Write your solution to problem 3 (b) here %%%%%%%%%%%
+\newpage
+
+% =============================================================
+
+\noindent
+\textbf{Def}: Let $A \in \mathbb{R}^{n \times n}$ be a symmetric matrix. We say that $A$ is positive definite if $\forall x\in \mathbb{R}^n,\ x^\top Ax > 0$. Similarly, we say that $A$ is positive semidefinite if $\forall x \in \mathbb{R}^n,\ x^\top Ax \geq 0$.
+\begin{question}[4]
+Let $x = \begin{bmatrix}x_1 & \cdots & x_n\end{bmatrix}^\top \in \mathbb{R}^n$, and let $A \in \mathbb{R}^{n \times n}$ be the square matrix
+\begin{equation*}
+A = \begin{bmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+  a_{21} & a_{22} & \cdots & a_{2n} \\
+  \vdots  & \vdots  & \ddots & \vdots  \\
+  a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{bmatrix}
+\end{equation*}
+
+\begin{itemize}
+\item[(a)] Give an explicit formula for $x^\top A x$. Write your answer as a sum involving the elements of $A$ and $x$. 
+\item[(b)] Show that if $A$ is positive definite, then the entries on the diagonal of $A$ are positive (that is, $a_{ii} > 0$ for all $1 \leq i \leq n$).
+\end{itemize}
+\end{question}
+\textbf{Solution:}
+%%%%%%%%%%% Write your solution to problem 4a here %%%%%%%%%%%
+%%%%%%%%%%% Write your solution to problem 4b here %%%%%%%%%%%
+
+
+% =============================================================
+
+\newpage
+\begin{question}[5]
+Let $B$ be a positive semidefinite matrix. Show that $B + \gamma I$ is positive definite for any $\gamma > 0$.
+\end{question}
+\textbf{Solution:}
+%%%%%%%%%%% Write your solution to problem 5 here %%%%%%%%%%%
+\newpage
+
+% =============================================================
+
+\begin{question}[6 : Derivatives and Norms]
+Derive the expression for following questions. Do not write the answers directly.
+\begin{itemize}
+\item[(a)] Let $\textbf{x}, \textbf{a} \in \R^n$. Derive $\frac{\partial \left(\textbf{x}^T\textbf{a}\right)}{\partial \textbf{x}}$.
+\item[(b)] Let \textbf{A} be a $n\times n$ matrix and $\textbf{x}$ be a vector in $\R^n$. Derive $\frac{\partial \left(\textbf{x}^T\textbf{A}\textbf{x} \right)}{\partial \textbf{x}}$.
+\item[(c)] Let \textbf{A}, \textbf{X} be $n\times n$ matrices. Derive $\frac{\partial \text{Trace(\textbf{XA})}}{\partial \textbf{X}}$.
+\item[(d)] Let \textbf{X} be a $m\times n$ matrix, $\textbf{a}\in \R^m$ and $\textbf{b}\in \R^n$. Derive $\frac{\partial \left(\textbf{a}^T\textbf{Xb}\right)}{\partial \textbf{X}}$.
+\item[(e)] Let $\textbf{x}\in \R^n$. Prove that $\|\textbf{x}\|_2 \leq \|\textbf{x}\|_1 \leq \sqrt{n}\|\textbf{x}\|_2$. Here $\|x\|_2=\sqrt{\sum_{i=1}^{n} x_i^2}$ and $\|\textbf{x}\|_1=\sum_{i=1}^{n} |x_i|$.
+\end{itemize}
+\end{question}
+\textbf{Solution:}
+%%%%%%%%%%% Write your solution to problem 6a here %%%%%%%%%%%
+%%%%%%%%%%% Write your solution to problem 6b here %%%%%%%%%%%
+%%%%%%%%%%% Write your solution to problem 6c here %%%%%%%%%%%
+%%%%%%%%%%% Write your solution to problem 6d here %%%%%%%%%%%
+%%%%%%%%%%% Write your solution to problem 6e here %%%%%%%%%%%
+
+% =============================================================
+
+\newpage
+\begin{question}[7 : Application of Matrix Derivatives]
+\mbox{}\\
+\noindent
+Let \textbf{X} be a $n\times d$ data matrix, $\textbf{Y}$ be the corresponding $n\times 1$ target/label matrix and $\boldsymbol{\Lambda}$ be the diagonal $n\times n$ matrix containing weight of each example. 
+Expanding them, we have $\textbf{X} = \left[ \begin{smallmatrix} (\textbf{x}^{(1)})^T \\ (\textbf{x}^{(2)})^T \\ \dots \\ (\textbf{x}^{(n)})^T \end{smallmatrix} \right]$, 
+$\textbf{Y} = \left[ \begin{smallmatrix} \textbf{y}^{(1)} \\ \textbf{y}^{(2)} \\ \dots \\ \textbf{y}^{(n)} \end{smallmatrix} \right]$ 
+and $\boldsymbol{\Lambda} = \text{diag}(\lambda^{(1)},\lambda^{(2)},\dots,\lambda^{(n)})$\\
+where $\textbf{x}^{(i)} \in \mathbb{R}^d$, $\textbf{y}^{(i)} \in \mathbb{R}$, and $\lambda^{(i)} > 0$ 
+$\;\;\forall\;\;i\in\{1\dots n\}$. \textbf{X}, \textbf{Y} and $\boldsymbol{\Lambda}$ are fixed and known.\\
+In the remaining parts of this question, we will try to fit a weighted linear regression model for this data. We want to find the value of weight vector $w$ which best satisfies the following equation $y^{(i)}=\textbf{w}^T\textbf{x}^{(i)}+\epsilon^{(i)}$ where $\epsilon$ is noise. This is achieved by minimizing the weighted noise for all the examples. Thus, our risk function is defined as follows:
+\begin{align*}
+R[\textbf{w}] &= \sum_{i=1}^{n} \lambda^{(i)}(\epsilon^{(i)})^2\\
+&= \sum_{i=1}^{n} \lambda^{(i)}(\textbf{w}^T\textbf{x}^{(i)}-y^{(i)})^2
+\end{align*}
+\begin{itemize}
+\item[(a)] Write this risk function $R[\textbf{w}]$ in matrix notation, i.e., in terms of \textbf{X}, \textbf{Y}, $\boldsymbol{\Lambda}$ and \textbf{w}.
+\item[(b)] Find the value of \textbf{w}, in matrix notation, that minimizes the risk function obtained in Part (a). You can assume that $\textbf{X}^T\boldsymbol{\Lambda}\textbf{X}$ is full rank matrix. Hint: You can use the expression derived in Q-6(b).
+\item[(c)] What will be the answer for questions in Parts (a) and (b) if you add $\text{L}_2$ regularization (i.e., shrinkage) on \textbf{w}? The L2 regularized risk function, for $\gamma>0$, is
+\begin{align*}
+R[\textbf{w}] &= \sum_{i=1}^{n} \lambda^{(i)}(\textbf{w}^T\textbf{x}^{(i)}-y^{(i)})^2 + \gamma \|\textbf{w}\|^2_2
+\end{align*}
+Hint: You can make use of the result in Q-5.
+\item[(d)] What role does the regularization (i.e., shrinkage) play in fitting the regression model and how ? You can observe the difference in expressions for $\textbf{w}$ obtained in Parts (c) and (d), and argue.
+\end{itemize}
+\end{question}
+\textbf{Solution:}
+%%%%%%%%%%% Write your solution to problem 7a here %%%%%%%%%%%
+%%%%%%%%%%% Write your solution to problem 7b here %%%%%%%%%%%
+%%%%%%%%%%% Write your solution to problem 7c here %%%%%%%%%%%
+%%%%%%%%%%% Write your solution to problem 7d here %%%%%%%%%%%
+\newpage
+
+% =============================================================
+
+\begin{question}[8: Classification]
+Suppose we have a classification problem with classes labeled $1, \dotsc, c$ and an additional doubt category labeled as $c+1$.
+Let the loss function be the following:\\
+\[
+\ell(f(x) = i, y = j) =
+  \begin{cases}
+   0 &  \mathrm{if}\ i=j \quad i,j\in\{1,\dotsc,c\} \\
+   \lambda_r       & \mathrm{if}\ i=c+1 \\
+   \lambda_s       & \text{otherwise}
+  \end{cases}
+\]
+where $\lambda_r$ is the loss incurred for choosing doubt and $\lambda_s$ is the loss incurred for making a misclassification. Note that $\lambda_r \ge 0$ and $\lambda_s \ge 0$. \\
+Hint : The risk of classifying a new datapoint as class $i\in\{1,2,\dots,c+1\}$ is $$R(\alpha_i|x) = \sum_{j=1}^{j=c} \ell(f(x) = i, y = j) P(\omega_j|x)$$
+
+\begin{itemize}
+\item[(a)] Show that the minimum risk is obtained if we follow this policy: (1) choose class~$i$ if $P(\omega_i|x) \geq P(\omega_j|x)$ for all $j$ and $P(\omega_i|x) \geq 1-\lambda_r/\lambda_s$, and (2) choose doubt otherwise.
+\item[(b)] What happens if $\lambda_r=0$? What happens if $\lambda_r>\lambda_s$?
+\end{itemize}
+\end{question}
+\textbf{Solution:}
+%%%%%%%%%%% Write your solution to problem 8a here %%%%%%%%%%%
+%%%%%%%%%%% Write your solution to problem 8b here %%%%%%%%%%%
+\newpage
+
+% =============================================================
+
+\end{document}
