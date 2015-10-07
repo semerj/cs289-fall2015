@@ -24,7 +24,7 @@ Date | Topics | Handouts | Book | Other Readings
 9/25 | Discussion 4 | [handout](./discussion/discussion04.pdf), [slides](./discussion/discussion4.pptx)
 9/29 | Model selection (1) | | | [Filters and wrappers](./lecture/CS189_lecture10_model_search_fall2015_final.pptx)
 10/1 | Model selection (2) | | ISLR Chapter 6 | [Embedded methods](./lecture/CS189_lecture11_embedded_methods_fall2015_final.pptx)
-10/2 | Discussion 5 | [handout](./discussion/discussion05.pdf), [slides](./discussion/discussion5.pptx) | |
+10/2 | Discussion 5 | [handout](./discussion/discussion05.pdf), [solutions](./discussion/discussion05_solution.pdf), [slides](./discussion/discussion5.pptx) | |
 10/6 | Gaussian classifier | | | [Gaussian classifier, Naive Bayes version with independence assumptions (no covariance)](./lecture/CS189_lecture12_gaussian_classifier_fall2015_final.pptx)
 10/8 | LDA | | ISLR Chapter 4 |
 
