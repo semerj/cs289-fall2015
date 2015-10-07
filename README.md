@@ -22,6 +22,11 @@ Date | Topics | Handouts | Book | Other Readings
 9/22 | Kernel methods | [lecture](./lecture/CS189_lecture8_kernel_machines_fall2015_final.pptx) | | [Kernel methods](./articles/Kernel_Methods_for_Pattern_Analysis_-_John_Shawe-Taylor_&_Nello_Christianini.pdf) (chatper 2 and 3)
 9/24 | Performance evaluation | [lecture](./lecture/CS189_lecture9_performance_evaluation_fall2015_final.pptx) | ISLR 5 | 
 9/25 | Discussion 4 | [handout](./discussion/discussion04.pdf), [slides](./discussion/discussion4.pptx)
+9/29 | Model selection (1) | | | [Filters and wrappers](./lecture/CS189_lecture10_model_search_fall2015_final.pptx)
+10/1 | Model selection (2) | | ISLR Chapter 6 | [Embedded methods](./lecture/CS189_lecture11_embedded_methods_fall2015_final.pptx)
+10/2 | Discussion 5 | [handout](./discussion/discussion05.pdf), [slides](./discussion/discussion5.pptx) | |
+10/6 | Gaussian classifier | | | [Gaussian classifier, Naive Bayes version with independence assumptions (no covariance)](./lecture/CS189_lecture12_gaussian_classifier_fall2015_final.pptx)
+10/8 | LDA | | ISLR Chapter 4 |
 
 ### Assignments
 Due | Topic
