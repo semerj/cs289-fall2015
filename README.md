@@ -21,12 +21,17 @@ Date | Topics | Handouts | Book | Other Readings
 9/18 | Discussion 3 | [handout](./discussion/discussion03.pdf), [solutions](./discussion/discussion03_solutions.pdf), [slides](./discussion/discussion3.pptx) | |
 9/22 | Kernel methods | [lecture](./lecture/CS189_lecture8_kernel_machines_fall2015_final.pptx) | | [Kernel methods](./articles/Kernel_Methods_for_Pattern_Analysis_-_John_Shawe-Taylor_&_Nello_Christianini.pdf) (chatper 2 and 3)
 9/24 | Performance evaluation | [lecture](./lecture/CS189_lecture9_performance_evaluation_fall2015_final.pptx) | ISLR 5 | 
-9/25 | Discussion 4 | [handout](./discussion/discussion04.pdf), [slides](./discussion/discussion4.pptx)
-9/29 | Model selection (1) | | | [Filters and wrappers](./lecture/CS189_lecture10_model_search_fall2015_final.pptx)
-10/1 | Model selection (2) | | ISLR Chapter 6 | [Embedded methods](./lecture/CS189_lecture11_embedded_methods_fall2015_final.pptx)
+9/25 | Discussion 4 | [handout](./discussion/discussion04.pdf), [solutions](./discussion/discussion04_solutions.pdf), [slides](./discussion/discussion4.pptx)
+9/29 | Model selection (1) | [lecture](./lecture/CS189_lecture10_model_search_fall2015_final.pptx) | |
+10/1 | Model selection (2) | [lecture](./lecture/CS189_lecture11_embedded_methods_fall2015_final.pptx) | ISLR Chapter 6 |
 10/2 | Discussion 5 | [handout](./discussion/discussion05.pdf), [solutions](./discussion/discussion05_solution.pdf), [slides](./discussion/discussion5.pptx) | |
-10/6 | Gaussian classifier | | | [Gaussian classifier, Naive Bayes version with independence assumptions (no covariance)](./lecture/CS189_lecture12_gaussian_classifier_fall2015_final.pptx)
-10/8 | LDA | | ISLR Chapter 4 |
+10/6 | Gaussian classifier | [lecture](./lecture/CS189_lecture12_gaussian_classifier_fall2015_final.pptx) | 
+10/8 | LDA | [lecture](./lecture/CS189_lecture13_LDA_fall2015_finalpptx.pptx) | ISLR Chapter 4, Chapter 10.2 for PCA |
+10/9 | Discussion 6 | [handout](./discussion/discussion06.pdf), [solutions](./discussion/discussion06_solution.pdf), [slides](./discussion/discussion6.pptx)
+10/13 | Gaussian mixtures | [lecture](./lecture/CS189_lecture14_Mixture_models_fall2015_final.pptx) | 
+10/15 | Gaussian processes | [lecture](./lecture/CS189_lecture15_Gaussian_Processes_fall2015_final.pptx) | | [GP tutorial](./articles/RW2.pdf)
+10/16 | Discussion 7 | [handout](./discussion/discussion07.pdf), [solutions](./discussion/discussion07_solution.pdf), [slides](./discussion/discussion7.pptx)
+10/20 | Non-parametric methods | [lecture](./lecture/nn1.pdf) | 
 
 ### Assignments
 Due | Topic
