@@ -39,3 +39,4 @@ Due | Topic
 9/11 | [SVM](./hw1/hw1.pdf)
 9/24 | [Probability, Linear Algebra, Matrix Calculus](./hw2/hw2.pdf)
 10/6 | [Linear and Logistic Regression](./hw3/hw3.pdf)
+10/18 | [Gaussian Classifiers](./hw4/hw4.pdf)
