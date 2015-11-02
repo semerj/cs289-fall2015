@@ -15,13 +15,13 @@ Date | Topics | Handouts | Book | Other Readings
 9/4 | Discussion 1 | [handout](./discussion/discussion01.pdf), [solutions](./discussion/discussion01_solution.pdf) | |
 9/8 | Risk minimization, Learn opt. margin Perceptron via gradient descent | [lecture](./lecture/CS189_lecture4_final_fall2015.pptx) | | [Large scale ML with SGD](./articles/compstat-2010.pdf)
 9/10 | Shrinkage | [lecture](./lecture/CS189_lecture5_shrinkage_fall2015.pptx) | ISLR 6.2 |
-9/11 | Discussion 2 | [handout](./discussion/discussion02.pdf), [solutions](./discussion/discussion02_solutions.pdf), [slides](./discussion/discussion2.pptx) | |
+9/11 | Discussion 2 | [handout](./discussion/discussion02.pdf), [solutions](./discussion/discussion02_solution.pdf), [slides](./discussion/discussion2.pptx) | |
 9/15 | Bayesian decision theory and Logistic regression | [lecture](./lecture/CS189_lecture6_logistic_regression_fall2015_final.pptx) | ISLR 4 |
 9/17 | Ridge regression | [lecture](./lecture/CS189_lecture7_ridge_regression_fall2015_final.pptx) | ISLR 3 | [Kernel Ridge Regression](./articles/KernelRidge.pdf)
-9/18 | Discussion 3 | [handout](./discussion/discussion03.pdf), [solutions](./discussion/discussion03_solutions.pdf), [slides](./discussion/discussion3.pptx) | |
+9/18 | Discussion 3 | [handout](./discussion/discussion03.pdf), [solutions](./discussion/discussion03_solution.pdf), [slides](./discussion/discussion3.pptx) | |
 9/22 | Kernel methods | [lecture](./lecture/CS189_lecture8_kernel_machines_fall2015_final.pptx) | | [Kernel methods](./articles/Kernel_Methods_for_Pattern_Analysis_-_John_Shawe-Taylor_&_Nello_Christianini.pdf) (chatper 2 and 3)
 9/24 | Performance evaluation | [lecture](./lecture/CS189_lecture9_performance_evaluation_fall2015_final.pptx) | ISLR 5 | 
-9/25 | Discussion 4 | [handout](./discussion/discussion04.pdf), [solutions](./discussion/discussion04_solutions.pdf), [slides](./discussion/discussion4.pptx)
+9/25 | Discussion 4 | [handout](./discussion/discussion04.pdf), [solutions](./discussion/discussion04_solution.pdf), [slides](./discussion/discussion4.pptx)
 9/29 | Model selection (1) | [lecture](./lecture/CS189_lecture10_model_search_fall2015_final.pptx) | |
 10/1 | Model selection (2) | [lecture](./lecture/CS189_lecture11_embedded_methods_fall2015_final.pptx) | ISLR Chapter 6 |
 10/2 | Discussion 5 | [handout](./discussion/discussion05.pdf), [solutions](./discussion/discussion05_solution.pdf), [slides](./discussion/discussion5.pptx) | |
