@@ -1,5 +1,5 @@
-from DecisionTree import *
 import numpy as np
+from DecisionTree import *
 
 
 class RandomForest(object):
@@ -13,7 +13,7 @@ class RandomForest(object):
     def fit(self, data, label):
         num_samples, total_features = data.shape
         for tree_num in range(self.num_trees):
-            print("TREE:", tree_num)
+            # print("TREE:", tree_num)
             random_rows = np.random.randint(0, num_samples, num_samples)
             random_features = np.random.choice(total_features,
                                                self.num_features,
@@ -22,7 +22,7 @@ class RandomForest(object):
             random_labels = label[random_rows]
             dt = DecisionTree(self.max_depth, self.min_obs)
             dt.fit(random_data, random_labels)
-            self.trees.append((random_features, dt))
+            self.trees += [(random_features, dt)]
 
     def predict_proba(self, test_data):
         total_votes = []
@@ -30,7 +30,7 @@ class RandomForest(object):
             random_features, dtree = feature_tree
             test_subset_data = test_data[:,random_features]
             pred = dtree.predict_proba(test_subset_data)
-            total_votes.append(pred)
+            total_votes += [pred]
         proba = np.mean(np.array(total_votes).T, axis=1)
         return proba
 

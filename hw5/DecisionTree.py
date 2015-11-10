@@ -1,6 +1,6 @@
-from Node import *
 import numpy as np
 from collections import namedtuple
+from Node import *
 
 
 class DecisionTree(object):
@@ -40,22 +40,23 @@ class DecisionTree(object):
         right_weight = right_den/child_den * self.entropy(right)
         return parent_entropy - (left_weight + right_weight)/2
 
-    def feature_split(self, label, feature, feature_name, parent_entropy):
+    def feature_split(self, label, feature_data, feature_name, parent_entropy):
         '''Find best value to split
-
         return:
             [('feature1', infogain), ('feature2', infogain), ...]
         '''
         Prob = namedtuple('prob', ['num', 'den'])
-        uniq_values = np.unique(feature)
+        uniq_values = np.unique(feature_data)
 
         feature_scores = []
         for val in uniq_values:
-            l0_counts = sum(label[feature <= val] == 0)
-            l1_counts = sum(label[feature <= val] == 1)
+            l_data = label[feature_data <= val]
+            l1_counts = np.count_nonzero(l_data)
+            l0_counts = l_data.shape[0] - l1_counts
 
-            r0_counts = sum(label[feature > val] == 0)
-            r1_counts = sum(label[feature > val] == 1)
+            r_data = label[feature_data > val]
+            r1_counts = np.count_nonzero(r_data)
+            r0_counts = r_data.shape[0] - r1_counts
 
             l_den = l0_counts + l1_counts
             r_den = r0_counts + r1_counts
@@ -65,24 +66,18 @@ class DecisionTree(object):
 
             split_name = "{} <= {}".format(feature_name, val)
 
-            # add a 1 if split results in too few observations
+            # set information gain to 1 if split results in too few obs
             if min(l_den, r_den) <= self.min_obs:
-                feature_scores.append((None, 0))
+                feature_scores += [(None, 0)]
 
-            l_prob = {
-                '0': Prob(l0_counts, l_den),
-                '1': Prob(l1_counts, l_den)
-            }
-
-            r_prob = {
-                '0': Prob(r0_counts, r_den),
-                '1': Prob(r1_counts, r_den)
-            }
+            l_prob = {'0': Prob(l0_counts, l_den), '1': Prob(l1_counts, l_den)}
+            r_prob = {'0': Prob(r0_counts, r_den), '1': Prob(r1_counts, r_den)}
 
             child_prob_tuple = (l_prob, r_prob)
-            info_gain = self.information_gain(parent_entropy, child_prob_tuple)
+            info_gain = self.information_gain(parent_entropy,
+                                              child_prob_tuple)
             # print(split_name, info_gain)
-            feature_scores.append((split_name, info_gain))
+            feature_scores += [(split_name, info_gain)]
 
         return feature_scores
 
@@ -92,21 +87,23 @@ class DecisionTree(object):
             ("{feature} <= {value to split on}", entropy)
         '''
         Prob = namedtuple('prob', ['num', 'den'])
-        _, p_counts = np.unique(label, return_counts=True)
-        den = sum(p_counts)
+        ones = np.count_nonzero(label)
+        total = len(label)
         parent_prob = {
-            '0': Prob(p_counts[0], den),
-            '1': Prob(p_counts[1], den)
+            '0': Prob((total - ones), total),
+            '1': Prob(ones, total)
         }
         parent_entropy = self.entropy(parent_prob)
 
         feature_scores = []
-        for i, feature in enumerate(data.T):
-            feature_scores += self.feature_split(label, feature, i, parent_entropy)
+        for feature_name, feature_data in enumerate(data.T):
+            feature_scores += self.feature_split(label, feature_data,
+                                                 feature_name,
+                                                 parent_entropy)
 
-        print(feature_scores)
+        # print(feature_scores)
         info_gain = max(feature_scores, key=lambda x: x[1])
-        print("BEST INFO GAIN:", info_gain)
+        # print("BEST INFO GAIN:", info_gain)
         return info_gain
 
     def split_data(self, node):
@@ -136,9 +133,13 @@ class DecisionTree(object):
         return left_child, right_child
 
     def grow_tree(self, data, label, depth=0):
-        if len(np.unique(label)) == 1:
+        uniq_labels = np.unique(label)
+        if len(uniq_labels) == 1:
             # print("PURE BRANCH")
-            return Node(data=None, label=None, node_type='leaf')
+            if uniq_labels == 0:
+                return Node(data=None, label=0, node_type='leaf')
+            elif uniq_labels == 1:
+                return Node(data=None, label=1, node_type='leaf')
 
         elif self.max_depth == depth:
             # print("MAX DEAPTH:", self.max_depth)
@@ -149,18 +150,17 @@ class DecisionTree(object):
             return Node(data=None, label=None, node_type='leaf')
 
         else:
-            if self.number_of_nodes == 1:
-                node_type = 'root'
-            else:
-                node_type = 'node'
+            # if self.number_of_nodes == 1:
+            #     node_type = 'root'
+            # else:
+            #     node_type = 'node'
+            # figure out how to count nodes?
+            # self.number_of_nodes += 2
 
-            tree = Node(data, label, node_type=node_type)
+            tree = Node(data, label, node_type='node')
             left_child, right_child = self.split_data(tree)
             tree.split_variable = left_child.split_variable
             tree.split_value = left_child.split_value
-
-            # figure out how to count nodes?
-            self.number_of_nodes += 2
 
             # print("split on feature {} at value {} and go left" \
             #         .format(tree.split_variable, tree.split_value))

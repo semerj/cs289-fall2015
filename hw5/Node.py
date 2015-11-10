@@ -15,7 +15,10 @@ class Node(object):
         return self.node_type
 
     def get_prob(self):
-        return np.bincount(self.label)[0]/len(self.label)
+        '''return probability of 0 in node data'''
+        ones = np.count_nonzero(self.label)
+        total = len(self.label)
+        return (total-ones)/total
 
     def traverse(self, row):
         if row[int(self.split_variable)] <= self.split_value:
