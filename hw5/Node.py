@@ -22,10 +22,12 @@ class Node(object):
 
     def traverse(self, row):
         if row[int(self.split_variable)] <= self.split_value:
+            # print(self.split_variable, "<=", self.split_value)
             if self.left_child.node_type == 'leaf':
                 return self.get_prob()
             return self.left_child.traverse(row)
         else:
+            # print(self.split_variable, ">", self.split_value)
             if self.right_child.node_type == 'leaf':
                 return self.get_prob()
             return self.right_child.traverse(row)

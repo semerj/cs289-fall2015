@@ -27,6 +27,7 @@ class RandomForest(object):
     def predict_proba(self, test_data):
         total_votes = []
         for feature_tree in self.trees:
+            # print("TREE")
             random_features, dtree = feature_tree
             test_subset_data = test_data[:,random_features]
             pred = dtree.predict_proba(test_subset_data)

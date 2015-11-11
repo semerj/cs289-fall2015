@@ -15,14 +15,13 @@ class DecisionTree(object):
             {'left': Prob(1, 2), 'right': Prob(1, 2)}
         '''
         Prob_0, Prob_1 = class_probs.values()
-        p0 = Prob_0.num/Prob_0.den
-        p1 = 1 - p0
-
-        if p0 == 0:
-            return -p1*np.log2(p1)
-        elif p1 == 0:
-            return -p0*np.log2(p0)
+        if Prob_0.den == 0:
+            return -np.log2(1)
+        elif Prob_1.den == 0:
+            return -np.log2(1)
         else:
+            p0 = Prob_0.num/Prob_0.den
+            p1 = 1 - p0
             return -p0*np.log2(p0)-p1*np.log2(p1)
 
     def information_gain(self, parent_entropy, child_prob_tuple):
@@ -61,22 +60,17 @@ class DecisionTree(object):
             l_den = l0_counts + l1_counts
             r_den = r0_counts + r1_counts
 
-            if l_den == 0 or r_den == 0:
-                break
-
-            split_name = "{} <= {}".format(feature_name, val)
-
-            # set information gain to 1 if split results in too few obs
+            # if too few obs, stop
             if min(l_den, r_den) <= self.min_obs:
                 feature_scores += [(None, 0)]
 
+            split_name = "{} <= {}".format(feature_name, val)
             l_prob = {'0': Prob(l0_counts, l_den), '1': Prob(l1_counts, l_den)}
             r_prob = {'0': Prob(r0_counts, r_den), '1': Prob(r1_counts, r_den)}
 
             child_prob_tuple = (l_prob, r_prob)
             info_gain = self.information_gain(parent_entropy,
                                               child_prob_tuple)
-            # print(split_name, info_gain)
             feature_scores += [(split_name, info_gain)]
 
         return feature_scores
@@ -101,7 +95,6 @@ class DecisionTree(object):
                                                  feature_name,
                                                  parent_entropy)
 
-        # print(feature_scores)
         info_gain = max(feature_scores, key=lambda x: x[1])
         # print("BEST INFO GAIN:", info_gain)
         return info_gain
@@ -150,13 +143,6 @@ class DecisionTree(object):
             return Node(data=None, label=None, node_type='leaf')
 
         else:
-            # if self.number_of_nodes == 1:
-            #     node_type = 'root'
-            # else:
-            #     node_type = 'node'
-            # figure out how to count nodes?
-            # self.number_of_nodes += 2
-
             tree = Node(data, label, node_type='node')
             left_child, right_child = self.split_data(tree)
             tree.split_variable = left_child.split_variable
