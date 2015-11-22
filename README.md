@@ -34,6 +34,7 @@ Date | Topics | Handouts | Book | Other Readings
 10/20 | Non-parametric methods | [lecture](./lecture/nn1.pdf) |
 10/22 | Curse of dimensionality | [lecture](./lecture/nn2_f15.pdf) |
 10/23 | Discussion 8 | [handout](./discussion/discussion08.pdf), [solutions](./discussion/discussion08_solution.pdf)
+10/27 | Midterm | [solutions](./exams/mt_fa15_soln.pdf)
 10/29 | Decision Trees | [lecture](./lecture/dtrees1.pdf) | ISLR 8.1
 11/30 | Discussion 9 | [handout](./discussion/discussion09.pdf), [solutions](./discussion/discussion09_solution.pdf)
 11/3 | Decision Trees #2 | [lecture](./lecture/dtrees2.pdf) | ISLR 8.1
