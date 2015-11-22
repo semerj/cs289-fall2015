@@ -33,12 +33,15 @@ Date | Topics | Handouts | Book | Other Readings
 10/16 | Discussion 7 | [handout](./discussion/discussion07.pdf), [solutions](./discussion/discussion07_solution.pdf), [slides](./discussion/discussion7.pptx)
 10/20 | Non-parametric methods | [lecture](./lecture/nn1.pdf) |
 10/22 | Curse of dimensionality | [lecture](./lecture/nn2_f15.pdf) |
+10/23 | Discussion 8 | [handout](./discussion/discussion08.pdf), [solutions](./discussion/discussion08_solution.pdf)
 10/29 | Decision Trees | [lecture](./lecture/dtrees1.pdf) | ISLR 8.1
-10/30 | Discussion 8 | [handout](./discussion/discussion08.pdf), [solutions](./discussion/discussion08_solution.pdf)
+11/30 | Discussion 9 | [handout](./discussion/discussion09.pdf), [solutions](./discussion/discussion09_solution.pdf)
 11/3 | Decision Trees #2 | [lecture](./lecture/dtrees2.pdf) | ISLR 8.1
 11/5 | Ensemble Methods | [lecture](./lecture/Ensemble Methods.pdf) | ISLR 8.2
-11/6 | Discussion 9 | [handout](./discussion/discussion09.pdf), [solutions](./discussion/discussion09_solution.pdf)
+11/6 | Discussion 10 | [handout](./discussion/discussion10.pdf), [solutions](./discussion/discussion10_solution.pdf)
 11/10 | Neural Networks | [lecture](./lecture/nnets1.pdf) | [A chapter from Daume's almost-finished ML textbook](http://ciml.info/dl/v0_9/ciml-v0_9-ch08.pdf), [A new online neural network textbook by Nielsen](http://neuralnetworksanddeeplearning.com/index.html), [Neural Networks Demystified ](https://www.youtube.com/watch?v=bxe2T-V8XRs)
+11/12 | Training Neural Nets | [lecture](./lecture/nnets2.pdf)
+11/17 | Convolutional Neural Nets | [lecture](./lecture/ConvNets.pdf)
 
 ### Assignments
 Due | Topic
@@ -49,3 +52,4 @@ Due | Topic
 10/18 | [Gaussian Classifiers](./hw4/hw4.pdf)
 11/9 | [Decision Trees and Random Forests](./hw5/hw5.pdf)
 11/24 | [Neural Networks](./hw6/hw6.pdf)
+12/4 | [Unsupervised Learning](./hw7/hw7.pdf)
