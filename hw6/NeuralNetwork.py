@@ -20,14 +20,6 @@ class NeuralNetwork(object):
     def _init_weights(self, n, d):
         return np.random.normal(self.mu, self.sd, (n, d))
 
-    def _bias(self, X, axis):
-        if axis == 'column':
-            b = np.ones((X.shape[0], 1))
-            return np.hstack((b, X))
-        elif axis == 'row':
-            b = np.ones((1, X.shape[1]))
-            return np.vstack((b, X))
-
     def _forward_pass(self, X):
         # hidden layer
         self.z2 = X.dot(self.W1) + self.b1
