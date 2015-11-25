@@ -1,3 +1,4 @@
+import time
 import numpy as np
 import matplotlib.pylab as plt
 
@@ -21,3 +22,11 @@ def make_plot(data, labels, title, ylim, xlab, ylab):
     plt.xlabel(xlab)
     plt.title(title)
     plt.show()
+
+def time_fn(name, fn, *args, **kwargs):
+    start = time.clock()
+    val1, val2 = fn(*args, **kwargs)
+    end = time.clock()
+    print(("{}: {} min").format(name, round((end-start)/60, 2)))
+    return val1, val2
+
