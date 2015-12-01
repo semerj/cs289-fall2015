@@ -19,12 +19,12 @@ def kmeans_cost(model):
         cost.append(k_norm)
     return np.mean(cost)
 
-def validation_accuracy(validation, joke_scores):
-    accuracy = []
-    for row in validation:
-        row_acc = np.sum(joke_scores[int(row[1]) - 1,:] == int(row[2]))/100
-        accuracy.append(row_acc)
-    return np.mean(accuracy)
+def validation_accuracy(validation, pred_matrix):
+    results = []
+    for user, item, rating in validation:
+        result = pred_matrix[user-1, item-1] == rating
+        results.append(result)
+    return np.sum(results)/len(results)
 
 def reshape_array(array, i):
     new = np.zeros(100)
@@ -34,10 +34,10 @@ def reshape_array(array, i):
     new[joke_id] = ratings
     return new.reshape(1,100)
 
-def reshape_validation(data, user_ids):
+def reshape_long_to_wide(data, user_ids):
     n_users = user_ids.shape[0]
-    matrix = np.empty((n_users, 100))
+    wide_matrix = np.empty((n_users, 100))
     for i, user in enumerate(user_ids):
         result = reshape_array(data, user)
-        matrix[i] = result
-    return matrix
+        wide_matrix[i] = result
+    return wide_matrix
