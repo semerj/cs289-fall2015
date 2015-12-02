@@ -23,10 +23,10 @@ Date | Topics | Handouts | Book | Other Readings
 9/24 | Performance evaluation | [lecture](./lecture/CS189_lecture9_performance_evaluation_fall2015_final.pptx) | ISLR 5 | 
 9/25 | Discussion 4 | [handout](./discussion/discussion04.pdf), [solutions](./discussion/discussion04_solution.pdf), [slides](./discussion/discussion4.pptx)
 9/29 | Model selection (1) | [lecture](./lecture/CS189_lecture10_model_search_fall2015_final.pptx) | |
-10/1 | Model selection (2) | [lecture](./lecture/CS189_lecture11_embedded_methods_fall2015_final.pptx) | ISLR Chapter 6 |
+10/1 | Model selection (2) | [lecture](./lecture/CS189_lecture11_embedded_methods_fall2015_final.pptx) | ISLR Ch 6 |
 10/2 | Discussion 5 | [handout](./discussion/discussion05.pdf), [solutions](./discussion/discussion05_solution.pdf), [slides](./discussion/discussion5.pptx) | |
 10/6 | Gaussian classifier | [lecture](./lecture/CS189_lecture12_gaussian_classifier_fall2015_final.pptx) | 
-10/8 | LDA | [lecture](./lecture/CS189_lecture13_LDA_fall2015_finalpptx.pptx) | ISLR Chapter 4, Chapter 10.2 for PCA |
+10/8 | LDA | [lecture](./lecture/CS189_lecture13_LDA_fall2015_finalpptx.pptx) | ISLR Ch 4, Ch 10.2 for PCA |
 10/9 | Discussion 6 | [handout](./discussion/discussion06.pdf), [solutions](./discussion/discussion06_solution.pdf), [slides](./discussion/discussion6.pptx)
 10/13 | Gaussian mixtures | [lecture](./lecture/CS189_lecture14_Mixture_models_fall2015_final.pptx) | 
 10/15 | Gaussian processes | [lecture](./lecture/CS189_lecture15_Gaussian_Processes_fall2015_final.pptx) | | [GP tutorial](./articles/RW2.pdf)
@@ -40,9 +40,13 @@ Date | Topics | Handouts | Book | Other Readings
 11/3 | Decision Trees #2 | [lecture](./lecture/dtrees2.pdf) | ISLR 8.1
 11/5 | Ensemble Methods | [lecture](./lecture/Ensemble Methods.pdf) | ISLR 8.2
 11/6 | Discussion 10 | [handout](./discussion/discussion10.pdf), [solutions](./discussion/discussion10_solution.pdf)
-11/10 | Neural Networks | [lecture](./lecture/nnets1.pdf) | [A chapter from Daume's almost-finished ML textbook](http://ciml.info/dl/v0_9/ciml-v0_9-ch08.pdf), [A new online neural network textbook by Nielsen](http://neuralnetworksanddeeplearning.com/index.html), [Neural Networks Demystified ](https://www.youtube.com/watch?v=bxe2T-V8XRs)
+11/10 | Neural Networks | [lecture](./lecture/nnets1.pdf) | | [A chapter from Daume's almost-finished ML textbook](http://ciml.info/dl/v0_9/ciml-v0_9-ch08.pdf), [A new online neural network textbook by Nielsen](http://neuralnetworksanddeeplearning.com/index.html), [Neural Networks Demystified ](https://www.youtube.com/watch?v=bxe2T-V8XRs)
 11/12 | Training Neural Nets | [lecture](./lecture/nnets2.pdf)
-11/17 | Convolutional Neural Nets | [lecture](./lecture/ConvNets.pdf)
+11/17 | Convolutional Neural Nets | [lecture](./lecture/ConvNets.pdf) | |[Convolutional Networks](http://cs231n.github.io/convolutional-networks/), [Convolutional Neural Network](http://ufldl.stanford.edu/tutorial/supervised/ConvolutionalNeuralNetwork/)
+11/19 | Clustering | [lecture](./lecture/clustering.pdf) | ISL 10.1, 10.3; ESL 14.3 |
+11/20 | Discussion 11 | [handout](./discussion/discussion11.pdf), [solutions](./discussion/discussion11_solution.pdf)
+11/24 | PCA, collaborative filtering | [lecture](./lecture/PCA'15.pdf) | ESL 6.6.1, 14.2-14.2.3; ISL 10.2 |
+12/1 | Finish PCA, density estimation, associative rules | [lecture](./lecture/Mode Finding.pdf) |
 
 ### Assignments
 Due | Topic
