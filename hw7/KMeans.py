@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.spatial.distance import cdist
+np.random.seed(289)
 
 
 class KMeans:
