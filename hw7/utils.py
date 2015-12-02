@@ -41,3 +41,10 @@ def reshape_long_to_wide(data, user_ids):
         result = reshape_array(data, user)
         wide_matrix[i] = result
     return wide_matrix
+
+def wide_to_long(predictions, query):
+    scores = []
+    for row in query:
+        user, item = row[1]-1, row[2]-1
+        scores.append(predictions[user, item])
+    return np.array(scores, dtype=np.int)
