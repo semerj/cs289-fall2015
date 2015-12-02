@@ -26,9 +26,6 @@ class KMeans:
                 if points_i.shape[0] > 0:
                     self.kmeans[i] = np.mean(points_i, axis=0)
 
-    def _dist(self, matrix, mu):
-        return np.linalg.norm(matrix - mu, axis=1)
-
     def classify(self, X):
-        self.distances = cdist(self.kmeans, X, 'sqeuclidean')
+        self.distances = cdist(self.kmeans, X, 'euclidean')
         return np.argmin(self.distances, axis=0)
