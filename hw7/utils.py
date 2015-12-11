@@ -19,12 +19,17 @@ def kmeans_cost(model):
         cost.append(k_norm)
     return np.mean(cost)
 
-def validation_accuracy(validation, pred_matrix):
-    results = []
+def validation_accuracy_and_MSE(validation, pred_matrix):
+    tf_results = []
+    mse_results = []
     for user, item, rating in validation:
-        result = pred_matrix[user-1, item-1] == rating
-        results.append(result)
-    return np.sum(results)/len(results)
+        tf = pred_matrix[user-1, item-1] == rating
+        tf_results.append(tf)
+        diff = (pred_matrix[user-1, item-1] - rating)**2
+        mse_results.append(diff)
+    acc = np.sum(tf_results)/len(tf_results)
+    mse = np.mean(mse_results)
+    return acc, mse
 
 def reshape_array(array, i):
     new = np.zeros(100)
@@ -48,3 +53,14 @@ def wide_to_long(predictions, query):
         user, item = row[1]-1, row[2]-1
         scores.append(predictions[user, item])
     return np.array(scores, dtype=np.int)
+
+def MSE(data_matrix, pred_matrix):
+    total = []
+    obs = []
+    for data, pred in zip(data_matrix, pred_matrix):
+        ind = np.where(~np.isnan(data))
+        row_n = len(ind[0])
+        row_total = sum((data[ind] - pred[ind])**2)
+        obs.append(row_n)
+        total.append(row_total)
+    return np.sum(total)/np.sum(obs)

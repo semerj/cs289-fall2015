@@ -18,13 +18,6 @@ class ALSLatentFactorModel:
     def _init_weights(self, num_factors):
         return np.random.normal(self.mu, self.std, (num_factors, self.d))
 
-    # def _mean_squared_cost(self):
-    #     rows, cols = np.where(~np.isnan(self.X))
-    #     cost = np.sum((self.U.dot(self.V.T) - self.X)**2) + \
-    #             self.λ*np.sum(norm(self.U, axis=1)**2) + \
-    #             self.λ*np.sum(norm(self.V, axis=1)**2)
-    #     return cost
-
     def fit(self, X):
         self.X = X
         num_users, num_items = X.shape
@@ -54,6 +47,9 @@ class ALSLatentFactorModel:
                 U_i = self.U[not_nan_ind]
                 self.V[i] = UtU_λI.dot(r_ui.dot(U_i))
 
-    def predict(self):
+    def predict(self, binarize=True):
         R_hat = self.U.dot(self.V.T)
-        return np.where(R_hat > 0, 1., 0.)
+        if binarize:
+            return np.where(R_hat > 0, 1., 0.)
+        else:
+            return R_hat
