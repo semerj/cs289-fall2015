@@ -47,6 +47,7 @@ Date | Topics | Handouts | Book | Other Readings
 11/20 | Discussion 11 | [handout](./discussion/discussion11.pdf), [solutions](./discussion/discussion11_solution.pdf)
 11/24 | PCA, collaborative filtering | [lecture](./lecture/PCA'15.pdf) | ESL 6.6.1, 14.2-14.2.3; ISL 10.2 |
 12/1 | Finish PCA, density estimation, associative rules | [lecture](./lecture/Mode Finding.pdf) |
+12/4 | Discussion 12 | [handout](./discussion/discussion12.pdf), [solutions](./discussion/discussion12_solution.pdf)
 
 ### Assignments
 Due | Topic
